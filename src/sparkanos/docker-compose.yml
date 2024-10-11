@@ -31,7 +31,7 @@ services:
       - sparkanos
  
 networks: 
-  light-lakehouse: 
+  sparkanos: 
     driver: bridge 
  
 volumes: 
