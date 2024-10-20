@@ -1,6 +1,9 @@
 # Ebook Sparkanos
 ![image](assets/capa_ebook.png)
 
+## Link para página do ebook Sparkanos
+https://ebook.sparkanos.com.br/
+
 ## Link para página oficial do Sparkanos
 https://sparkanos.arrudaconsulting.com.br/
 
