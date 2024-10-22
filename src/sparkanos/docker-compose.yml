@@ -1,3 +1,8 @@
+x-spark-common: &spark-common
+  image: wlcamargo/spark-master
+  networks:
+    - sparkanos
+
 services: 
   minio: 
     hostname: minio 
@@ -15,24 +20,29 @@ services:
     networks: 
       - sparkanos
  
-  spark-master: 
-    hostname: spark-master 
-    container_name: spark-master 
-    image: bitnami/spark:3.4.1 
-    command: bin/spark-class org.apache.spark.deploy.master.Master 
-    volumes: 
-      - ./spark-apps:/opt/spark-apps 
-      - ./spark-config/spark-defaults.conf:/opt/bitnami/spark/conf/spark-defaults.conf 
-      - ./spark-config/hive-site.xml:/opt/bitnami/spark/conf/hive-site.xml 
-    ports: 
-      - "8080:8080" 
-      - "7077:7077" 
-    networks: 
-      - sparkanos
- 
+  spark-master:
+    <<: *spark-common
+    hostname: spark-master
+    container_name: spark-master
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        /usr/local/spark/sbin/start-master.sh
+        start-notebook.sh --NotebookApp.token=''
+    volumes:
+      - ./conf/util:/util
+      - ./conf/env:/env
+      - ${NOTEBOOK_PATH}:/home/user/work
+    ports:
+      - 8889:8888 # Jupyter
+      - 8083:8080 # Spark UI
+      - 4040:4040 # Spark UI Jobs
+      - 7077:7077 # Default port for communication
+
 networks: 
-  light-lakehouse: 
+  sparkanos: 
     driver: bridge 
- 
+
 volumes: 
   minio:

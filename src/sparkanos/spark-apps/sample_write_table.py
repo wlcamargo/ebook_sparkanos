@@ -5,9 +5,7 @@ from pyspark.sql.functions import col
 def main(): 
     source_bucket = "bronze" 
  
-    spark = SparkSession.builder \ 
-        .appName("Write Sample Delta Table to S3") \ 
-        .getOrCreate() 
+    spark = SparkSession.builder.appName("Write Sample Delta Table to S3").getOrCreate() 
  
     delta_path = f"s3a://{source_bucket}/sample_table" 
  
