@@ -22,3 +22,16 @@ Abra o navegador e digite:
 ```
 localhost:8889
 ```
+## Nota importante
+É necessário fazer o mapeamento do caminho onde está a pasta spark-app na sua máquina para o container do Spark enxergá-la.
+
+Onde fazer o mapeamento?
+
+Entre no arquivo ```.env``` e faça a alteração. 
+
+![image](assets/env.png)
+
+Alteração SOMENTE o caminho, mas mantenha o nome da variável.
+
+![image](assets/path.png)
+
