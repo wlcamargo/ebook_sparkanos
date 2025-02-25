@@ -33,7 +33,7 @@ services:
     volumes:
       - ./conf/util:/util
       - ./conf/env:/env
-      - ${NOTEBOOK_PATH}:/home/user/work
+      - ./src/sparkanos/spark-apps:/home/user/work
     ports:
       - 8889:8888 # Jupyter
       - 8083:8080 # Spark UI
